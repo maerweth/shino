@@ -106,7 +106,7 @@ body {
 }
 
 .game-card:hover {
-  border-color: #ff8c00;
+  border-color: #1a1a1a;
 }
 
 .game-img {
@@ -142,7 +142,7 @@ body {
   display: block;
   width: calc(100% - 32px);
   margin: 8px 16px 16px;
-  background: #ff8c00;
+  background: #1a1a1a;
   color: white;
   border: none;
   border-radius: 8px;
@@ -152,7 +152,7 @@ body {
 }
 
 .game-btn:hover {
-  background: #e07b00;
+  background: #1a1a1a;
 }
 /* GİRİŞ EKRANI */
 .modal-overlay {
@@ -223,7 +223,7 @@ body {
 }
 
 .input-box:focus {
-  border-color: #ff8c00;
+  border-color: #1a1a1a;
 }
 
 .modal-btn {
@@ -239,7 +239,7 @@ body {
 }
 
 .modal-btn:hover {
-  background: #e07b00;
+  background: #1a1a1a;
 }
 .forgot-password {
   color: #4a90e2;
