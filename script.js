@@ -35,8 +35,9 @@ document.getElementById("registerBtn").addEventListener("click", async function(
     return;
   }
 
+  const email = username.includes('@') ? username : username + '@shino.com';
   const { error } = await supabaseClient.auth.signUp({
-    email: username,
+    email: email,
     password: password,
   });
 
@@ -79,12 +80,11 @@ supabaseClient.auth.getSession().then(({ data: { session } }) => {
 });
 
 function girisYapildi(email) {
+  document.getElementById("logoAlan").innerHTML = `<span style="color: #8b5cf6; font-size: 16px;">${email}</span>`;
   document.querySelector(".nav-buttons").innerHTML = `
-    <span style="color: white; font-size: 14px;">${email}</span>
-    <button onclick="cikisYap()" style="background: transparent; color: #ff8c00; border: 1.5px solid #ff8c00; padding: 8px 20px; border-radius: 8px; font-size: 14px; cursor: pointer;">Çıkış Yap</button>
+    <button onclick="cikisYap()" style="background: transparent; color: #8b5cf6; border: 1.5px solid #8b5cf6; padding: 8px 20px; border-radius: 8px; font-size: 14px; cursor: pointer;">Çıkış Yap</button>
   `;
 }
-
 async function cikisYap() {
   await supabaseClient.auth.signOut();
   location.reload();
