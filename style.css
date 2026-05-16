@@ -48,9 +48,9 @@ body {
 }
 
 .btn-register {
-  background: #ff8c00;
+  background: #8b5cf6;
   color: white;
-  border: 1.5px solid #ff8c00;
+  border: 1.5px solid #8b5cf6;
   padding: 8px 20px;
   border-radius: 8px;
   font-size: 14px;
@@ -58,7 +58,7 @@ body {
 }
 
 .btn-register:hover {
-  background: #e07b00;
+  background: #1a1a1a;
 }
 
 /* HERO */
@@ -197,7 +197,7 @@ body {
 }
 
 .modal-title {
-  color: #ff8c00;
+  color: #8b5cf6;
   font-size: 22px;
   margin-bottom: 28px;
   text-align: center;
@@ -228,7 +228,7 @@ body {
 
 .modal-btn {
   width: 100%;
-  background: #ff8c00;
+  background: #8b5cf6;
   color: white;
   border: none;
   border-radius: 8px;
