@@ -1,254 +1,70 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+// SUPABASE BAĞLANTISI
+const SUPABASE_URL = 'https://zetyyolrgoatlydijags.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_s9AcIZ5j2HXXsO6H_6RPxg_cL37aJw7';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-body {
-  background-color: #0a0a0a;
-  font-family: Arial, sans-serif;
-  color: white;
-}
+// Giriş Yap butonuna tıklanınca ekranı aç
+document.getElementById("loginBtn-open").addEventListener("click", function() {
+  document.getElementById("loginModal").classList.add("active");
+});
 
-/* NAVBAR */
-.navbar {
-  background-color: #111111;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 32px;
-  border-bottom: 1px solid #222;
-}
+// Çarpıya tıklanınca ekranı kapat
+document.getElementById("closeLogin").addEventListener("click", function() {
+  document.getElementById("loginModal").classList.remove("active");
+});
 
-.logo {
-  color: #ff8c00;
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
+// Kayıt Ol butonuna tıklanınca ekranı aç
+document.getElementById("registerBtn-open").addEventListener("click", function() {
+  document.getElementById("registerModal").classList.add("active");
+});
 
-.nav-buttons {
-  display: flex;
-  gap: 10px;
-}
+// Çarpıya tıklanınca ekranı kapat
+document.getElementById("closeRegister").addEventListener("click", function() {
+  document.getElementById("registerModal").classList.remove("active");
+});
 
-.btn-login {
-  background: transparent;
-  color: #ff8c00;
-  border: 1.5px solid #ff8c00;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
+// KAYIT OL
+document.getElementById("registerBtn").addEventListener("click", async function() {
+  const username = document.getElementById("reg-username").value;
+  const password = document.getElementById("reg-password").value;
 
-.btn-login:hover {
-  background: #1a1a1a;
-}
+  if (!username || !password) {
+    alert("Lütfen tüm alanları doldurun!");
+    return;
+  }
 
-.btn-register {
-  background: #ff8c00;
-  color: white;
-  border: 1.5px solid #ff8c00;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
+  const { error } = await supabase.auth.signUp({
+    email: username,
+    password: password,
+  });
 
-.btn-register:hover {
-  background: #e07b00;
-}
+  if (error) {
+    alert("Hata: " + error.message);
+  } else {
+    alert("Kayıt başarılı! Giriş yapabilirsiniz.");
+    document.getElementById("registerModal").classList.remove("active");
+  }
+});
 
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px 32px 32px;
-}
+// GİRİŞ YAP
+document.getElementById("loginBtn").addEventListener("click", async function() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-.hero h1 {
-  font-size: 32px;
-  color: white;
-  margin-bottom: 10px;
-}
+  if (!username || !password) {
+    alert("Lütfen tüm alanları doldurun!");
+    return;
+  }
 
-.hero p {
-  font-size: 16px;
-  color: #888;
-}
+  const { error } = await supabase.auth.signInWithPassword({
+    email: username,
+    password: password,
+  });
 
-/* OYUN KARTLARI */
-.games-section {
-  padding: 20px 32px 60px;
-}
-
-.section-title {
-  color: #ff8c00;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
-
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.game-card {
-  background: #1a1a1a;
-  border-radius: 10px;
-  border: 1px solid #2a2a2a;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.game-card:hover {
-  border-color: #ff8c00;
-}
-
-.game-img {
-  width: 100%;
-  height: 160px;
-  overflow: hidden;
-  background: #111;
-}
-
-.game-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.game-info {
-  padding: 12px 16px;
-}
-
-.game-name {
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.game-tag {
-  color: #888;
-  font-size: 12px;
-}
-
-.game-btn {
-  display: block;
-  width: calc(100% - 32px);
-  margin: 8px 16px 16px;
-  background: #ff8c00;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 0;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.game-btn:hover {
-  background: #e07b00;
-}
-/* GİRİŞ EKRANI */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal-overlay.active {
-  display: flex;
-}
-
-.modal {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 40px;
-  width: 380px;
-  position: relative;
-}
-
-.modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: transparent;
-  border: none;
-  color: #888;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  color: white;
-}
-
-.modal-title {
-  color: #ff8c00;
-  font-size: 22px;
-  margin-bottom: 28px;
-  text-align: center;
-}
-
-.input-label {
-  display: block;
-  color: #aaa;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-
-.input-box {
-  width: 100%;
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 10px 14px;
-  color: white;
-  font-size: 14px;
-  margin-bottom: 20px;
-  outline: none;
-}
-
-.input-box:focus {
-  border-color: #ff8c00;
-}
-
-.modal-btn {
-  width: 100%;
-  background: #ff8c00;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 0;
-  font-size: 15px;
-  cursor: pointer;
-  margin-top: 4px;
-}
-
-.modal-btn:hover {
-  background: #e07b00;
-}
-.forgot-password {
-  color: #4a90e2;
-  font-size: 13px;
-  text-align: center;
-  margin-top: 14px;
-  cursor: pointer;
-}
-
-.forgot-password:hover {
-  color: #6aaeff;
-}
+  if (error) {
+    alert("Hata: " + error.message);
+  } else {
+    alert("Giriş başarılı! Hoş geldin!");
+    document.getElementById("loginModal").classList.remove("active");
+  }
+});
