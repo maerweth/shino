@@ -66,7 +66,7 @@ document.getElementById("loginBtn").addEventListener("click", async function() {
   if (error) {
     alert("Hata: " + error.message);
   } else {
-    alert("Giriş başarılı! Hoş geldin!");
+    showMessage("Başarıyla giriş yapıldı!");
   document.getElementById("loginModal").classList.remove("active");
   girisYapildi(username);
   }
@@ -88,4 +88,9 @@ function girisYapildi(email) {
 async function cikisYap() {
   await supabaseClient.auth.signOut();
   location.reload();
+}
+function showMessage(msg) {
+  const el = document.getElementById("successMessage");
+  el.style.display = "block";
+  setTimeout(() => { el.style.display = "none"; }, 3000);
 }
