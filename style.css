@@ -223,7 +223,7 @@ body {
 }
 
 .input-box:focus {
-  border-color: #1a1a1a;
+  border-color: #ff00dd;
 }
 
 .modal-btn {
@@ -239,7 +239,7 @@ body {
 }
 
 .modal-btn:hover {
-  background: #1a1a1a;
+  background: #ff00bf;
 }
 .forgot-password {
   color: #4a90e2;
