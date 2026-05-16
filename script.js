@@ -67,7 +67,8 @@ document.getElementById("loginBtn").addEventListener("click", async function() {
     alert("Hata: " + error.message);
   } else {
     alert("Giriş başarılı! Hoş geldin!");
-    document.getElementById("loginModal").classList.remove("active");
+  document.getElementById("loginModal").classList.remove("active");
+  girisYapildi(username);
   }
 });
 // Sayfa açılınca giriş durumunu kontrol et
