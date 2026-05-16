@@ -279,3 +279,6 @@ body {
 .search-input::placeholder {
   color: #7ab3cc;
 }
+#arama-sonuc {
+  margin: 0 32px;
+}
