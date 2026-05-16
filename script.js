@@ -70,3 +70,21 @@ document.getElementById("loginBtn").addEventListener("click", async function() {
     document.getElementById("loginModal").classList.remove("active");
   }
 });
+// Sayfa açılınca giriş durumunu kontrol et
+supabaseClient.auth.getSession().then(({ data: { session } }) => {
+  if (session) {
+    girisYapildi(session.user.email);
+  }
+});
+
+function girisYapildi(email) {
+  document.querySelector(".nav-buttons").innerHTML = `
+    <span style="color: white; font-size: 14px;">${email}</span>
+    <button onclick="cikisYap()" style="background: transparent; color: #ff8c00; border: 1.5px solid #ff8c00; padding: 8px 20px; border-radius: 8px; font-size: 14px; cursor: pointer;">Çıkış Yap</button>
+  `;
+}
+
+async function cikisYap() {
+  await supabaseClient.auth.signOut();
+  location.reload();
+}
