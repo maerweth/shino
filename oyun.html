@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oyun Detay</title>
+  <link rel="stylesheet" href="oyun.css">
+</head>
+<body>
+
+<div class="overlay">
+  <div class="kart">
+
+    <button class="kapat" onclick="window.location.href='index.html'">✕</button>
+
+    <div class="kart-baslik">
+      <img id="oyunResimKucuk" src="" class="kucuk-resim">
+      <div>
+        <h1 id="oyunAdiBaslik"></h1>
+        <div class="baslik-alt">
+          <span class="steam-badge">🎮 Steam</span>
+          <span id="tarih" class="tarih"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="kart-ici">
+      <div class="sol">
+
+        <div class="bolum-baslik">🔵 Steam Hesap Bilgileri</div>
+
+        <div class="bilgi-kutu">
+          <div class="kutu-baslik"><span>🔑</span> KULLANICI ADI</div>
+          <div class="kutu-ici">
+            <span class="deger" id="usernameGoster"></span>
+            <button onclick="kopyala('usernameGoster')">📋</button>
+          </div>
+        </div>
+
+        <div class="bilgi-kutu">
+          <div class="kutu-baslik"><span>🔒</span> ŞİFRE</div>
+          <div class="kutu-ici">
+            <span class="deger" id="passwordGoster">••••••••••</span>
+            <button onclick="goster()">🔒</button>
+            <button onclick="kopyala('passwordGercek')">📋</button>
+            <span id="passwordGercek" style="display:none;"></span>
+          </div>
+        </div>
+
+        <div class="guard-kutu">
+          <div class="guard-baslik">
+            <div class="guard-ikon">🛡️</div>
+            <div>
+              <h3>Guard Kod</h3>
+              <p>Hesap Giriş Kodu</p>
+            </div>
+          </div>
+          <div class="guard-uyari">
+            ⚠️ Steam bilgilerinizi girdikten sonra kod ekranı açıldığında, "Kod Talep Et" butonuna basmanız gerekmektedir. 1 haftada 1 kez kod hakkınız vardır.
+          </div>
+            <div class="guard-kod-alani">
+            <span id="guardKod"></span>
+            <button onclick="kopyala('guardKod')">📋</button>
+            </div>
+            <div class="guard-talep">
+            <span>🕐</span>
+            <span>Guard Kodu Talep Et</span>
+        </div>
+        </div>
+
+      </div>
+
+      <div class="ayrac"></div>
+
+      <div class="sag">
+        <div class="kullanim-baslik">ℹ️ Kullanım Talimatları</div>
+        <div class="adim">
+          <span class="adim-no">01</span>
+          <div>
+            <h4>Platforma Giriş</h4>
+            <p>Steam masaüstü uygulaması üzerinden, tarafınıza iletilen kullanıcı adı ve şifre bilgileri ile giriş yapınız. Giriş esnasında, giriş ekranında yer alan "Bu cihazı hatırla" seçeneğini mutlaka işaretleyiniz.</p>
+          </div>
+        </div>
+        <div class="adim">
+          <span class="adim-no">02</span>
+          <div>
+            <h4>Doğrulama Kodu İşlemleri</h4>
+            <p>Giriş sırasında platform tarafından doğrulama kodu talep edilmesi halinde, "Kod Talep Et" butonuna tıklayarak doğrulama kodunu isteyiniz.</p>
+          </div>
+        </div>
+        <div class="adim">
+          <span class="adim-no">03</span>
+          <div>
+            <h4>Çevrimdışı Mod ve Oyun Kurulumu</h4>
+            <p>Steam kütüphanesine giriş yapınız ve oyunu indiriniz. Oyun indirildikten sonra, bir kez çevrimiçi olarak oyunu başlatınız.</p>
+          </div>
+        </div>
+
+        <div class="onemli-baslik">⚠️ Önemli Notlar</div>
+        <div class="not"><span class="not-no">1</span><p>Steam hesabına tarayıcı veya mobil uygulama üzerinden giriş yapılmamalıdır.</p></div>
+        <div class="not"><span class="not-no">2</span><p>Oyun kütüphanede görünmüyorsa, Görünüm → Gizlenmiş Oyunlar menüsünden kontrol edebilirsiniz.</p></div>
+        <div class="not"><span class="not-no">3</span><p>Oyunu kütüphaneden indirirken "Bağlan" veya "Yayınla" seçeneği görüntülenirse, yanındaki ok simgesine tıklayarak "Bu Aygıt" seçeneğini seçiniz.</p></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="oyun.js"></script>
+</body>
+</html>
