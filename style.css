@@ -252,3 +252,30 @@ body {
 .forgot-password:hover {
   color: #6aaeff;
 }
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #0d3349;
+  border-radius: 8px;
+  margin: 20px 32px 0;
+  padding: 0 16px;
+  height: 48px;
+}
+
+.search-icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 15px;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: #7ab3cc;
+}
