@@ -62,3 +62,19 @@ async function cikisYap() {
   await supabaseClient.auth.signOut();
   window.location.href = "index.html";
 }
+async function guardTalep() {
+  document.getElementById("guardKod").innerText = "Yükleniyor...";
+  
+  try {
+    const response = await fetch('/api/gmail');
+    const data = await response.json();
+    
+    if (data.kod) {
+      document.getElementById("guardKod").innerText = data.kod;
+    } else {
+      document.getElementById("guardKod").innerText = "Kod bulunamadı";
+    }
+  } catch (error) {
+    document.getElementById("guardKod").innerText = "Hata oluştu";
+  }
+}
