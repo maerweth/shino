@@ -1,0 +1,339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a1628;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.overlay {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.kart {
+  background: #0d1f35;
+  border: 1px solid #1a4a6e;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.kapat {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #1a2a3a;
+  border: none;
+  color: white;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.kapat:hover {
+  background: #8b5cf6;
+}
+
+.kart-baslik {
+  background: linear-gradient(135deg, #0d2d42, #1a1a2e);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid #1a4a6e;
+}
+
+.kucuk-resim {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.kart-baslik h1 {
+  font-size: 22px;
+  color: white;
+}
+
+.baslik-alt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.steam-badge {
+  background: #1a4a6e;
+  color: #7ab3cc;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.tarih {
+  color: #7ab3cc;
+  font-size: 12px;
+}
+
+.kart-ici {
+  display: flex;
+  gap: 0;
+  min-height: 400px;
+}
+
+.sol {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.ayrac {
+  width: 2px;
+  background: #8b5cf6;
+}
+
+.sag {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.bolum-baslik {
+  background: #0a2535;
+  border: 1px solid #1a4a6e;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #7ab3cc;
+  text-align: center;
+}
+
+.bilgi-kutu {
+  background: #0a2535;
+  border: 1px solid #1a4a6e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.kutu-baslik {
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #7ab3cc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kutu-ici {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #071825;
+}
+
+.kutu-ici .deger {
+  flex: 1;
+  color: white;
+  font-size: 14px;
+}
+
+.kutu-ici button {
+  background: #1a4a6e;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: white;
+}
+
+.kutu-ici button:hover {
+  background: #8b5cf6;
+}
+
+.guard-kutu {
+  background: #0a2535;
+  border: 1px solid #1a4a6e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.guard-baslik {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.guard-ikon {
+  background: #8b5cf6;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.guard-baslik h3 {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.guard-baslik p {
+  font-size: 11px;
+  color: #7ab3cc;
+}
+
+.guard-uyari {
+  background: #1a2e0a;
+  border-left: 3px solid #f59e0b;
+  margin: 0 12px 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #f59e0b;
+}
+
+.guard-kod-alani {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #071825;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.guard-kod-alani button {
+  background: #1a4a6e;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: white;
+}
+
+.kullanim-baslik {
+  font-size: 14px;
+  font-weight: bold;
+  color: #7ab3cc;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.adim {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  background: #0a2535;
+  border: 1px solid #1a4a6e;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.adim-no {
+  background: #1a4a6e;
+  color: #7ab3cc;
+  font-size: 12px;
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.adim h4 {
+  font-size: 13px;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.adim p {
+  font-size: 12px;
+  color: #7ab3cc;
+  line-height: 1.5;
+}
+
+.onemli-baslik {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f59e0b;
+  margin: 16px 0 12px;
+}
+
+.not {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  background: #0a2535;
+  border: 1px solid #1a4a6e;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.not-no {
+  background: #f59e0b;
+  color: #000;
+  font-size: 11px;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.not p {
+  font-size: 12px;
+  color: #7ab3cc;
+  line-height: 1.5;
+}
+.guard-talep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #0a2535;
+  border-top: 1px solid #1a4a6e;
+  color: #f59e0b;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.guard-talep:hover {
+  background: #1a2e0a;
+}
