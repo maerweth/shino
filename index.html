@@ -20,6 +20,7 @@
   <span class="search-icon">🔍</span>
   <input type="text" class="search-input" placeholder="Kod'u veya oyunu aratın.">
 </div>
+<div id="arama-sonuc"></div>
 
   <div class="games-section">
     <h2 class="section-title">Öne Çıkan Oyunlar</h2>
@@ -55,7 +56,7 @@
     <div class="game-name">The Forest</div>
     <div class="game-tag">Hayatta Kalma</div>
   </div>
-    <a href="https://store.steampowered.com/app/242760/The_Forest/" target="_blank"><button class="game-btn">İncele</button></a>
+  <a href="https://store.steampowered.com/app/242760/The_Forest/" target="_blank"><button class="game-btn">İncele</button></a>
 </div>
 
     </div>
@@ -93,9 +94,9 @@
     <button class="modal-btn" id="registerBtn">Kayıt Ol</button>
   </div>
 </div>
-  <div id="successMessage" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; color:#8b5cf6; padding:40px 60px; border-radius:16px; font-size:22px; font-weight:bold; z-index:9999; box-shadow: 0 4px 20px rgba(0,0,0,0.3); text-align:center;">
-    Başarıyla giriş yapıldı!
-  </div>
+
+<div id="successMessage" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; color:#8b5cf6; padding:40px 60px; border-radius:16px; font-size:22px; font-weight:bold; z-index:9999; box-shadow: 0 4px 20px rgba(0,0,0,0.3); text-align:center;"></div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
 </body>
