@@ -1,7 +1,9 @@
 // SUPABASE BAĞLANTISI
-const SUPABASE_URL = 'https://zetyyolrgoatlydijags.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_s9AcIZ5j2HXXsO6H_6RPxg_cL37aJw7';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const { createClient } = supabase;
+const supabaseClient = createClient(
+  'https://zetyyolrgoatlydijags.supabase.co',
+  'sb_publishable_s9AcIZ5j2HXXsO6H_6RPxg_cL37aJw7'
+);
 
 // Giriş Yap butonuna tıklanınca ekranı aç
 document.getElementById("loginBtn-open").addEventListener("click", function() {
@@ -33,7 +35,7 @@ document.getElementById("registerBtn").addEventListener("click", async function(
     return;
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { error } = await supabaseClient.auth.signUp({
     email: username,
     password: password,
   });
@@ -56,7 +58,7 @@ document.getElementById("loginBtn").addEventListener("click", async function() {
     return;
   }
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabaseClient.auth.signInWithPassword({
     email: username,
     password: password,
   });
