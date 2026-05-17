@@ -9,13 +9,9 @@
   <style>
     body { font-family: 'Exo 2', sans-serif; }
 
-    .kutu-container {
-      padding: 50px 40px;
-    }
+    .kutu-container { padding: 50px 40px; }
 
-    .hos-geldin {
-      margin-bottom: 36px;
-    }
+    .hos-geldin { margin-bottom: 36px; }
 
     .hos-geldin h1 {
       font-size: 36px;
@@ -26,10 +22,7 @@
       margin-bottom: 6px;
     }
 
-    .hos-geldin p {
-      color: #7ab3cc;
-      font-size: 14px;
-    }
+    .hos-geldin p { color: #7ab3cc; font-size: 14px; }
 
     .istatistik-row {
       display: grid;
@@ -48,13 +41,9 @@
       justify-content: space-between;
     }
 
-    .istatistik-kart .sol-bilgi {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .sol-bilgi { display: flex; flex-direction: column; gap: 6px; }
 
-    .istatistik-kart .etiket {
+    .etiket {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -62,13 +51,9 @@
       text-transform: uppercase;
     }
 
-    .istatistik-kart .deger {
-      font-size: 28px;
-      font-weight: 800;
-      color: #00d4ff;
-    }
+    .deger { font-size: 28px; font-weight: 800; color: #00d4ff; }
 
-    .istatistik-kart .ikon-daire {
+    .ikon-daire {
       width: 48px;
       height: 48px;
       border-radius: 12px;
@@ -78,9 +63,9 @@
       font-size: 22px;
     }
 
-    .ikon-daire.mavi { background: rgba(0, 212, 255, 0.15); }
-    .ikon-daire.yesil { background: rgba(16, 185, 129, 0.15); }
-    .ikon-daire.mor { background: rgba(139, 92, 246, 0.15); }
+    .ikon-daire.mavi { background: rgba(0,212,255,0.15); }
+    .ikon-daire.yesil { background: rgba(16,185,129,0.15); }
+    .ikon-daire.mor { background: rgba(139,92,246,0.15); }
 
     .alt-row {
       display: flex;
@@ -174,15 +159,7 @@
       gap: 6px;
     }
 
-    .platform-badge img {
-      width: 14px;
-      height: 14px;
-      border-radius: 0;
-    }
-
-    .kart-bilgi {
-      padding: 14px 16px;
-    }
+    .kart-bilgi { padding: 14px 16px; }
 
     .kart-bilgi .oyun-isim {
       font-size: 15px;
@@ -199,7 +176,6 @@
       gap: 4px;
     }
 
-    /* Oyun Ekleme Modal */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -316,7 +292,6 @@
 </nav>
 
 <div class="kutu-container">
-
   <div class="hos-geldin">
     <h1 id="hosgeldinBaslik">Hoş geldin!</h1>
     <p>Kullandığınız oyun kodlarını görüntüleyin ve yeni kodlar ekleyin</p>
@@ -359,7 +334,6 @@
     <div class="bos-ikon">🎮</div>
     <p>Henüz oyun eklemediniz. "Oyun Ekle" butonuna tıklayın.</p>
   </div>
-
 </div>
 
 <!-- OYUN EKLEME MODAL -->
@@ -369,7 +343,7 @@
     <div class="modal-title">🎮 Oyun Ekle</div>
     <p class="modal-aciklama">Satın aldığınız oyun kodunu girerek kütüphanenize ekleyin</p>
     <label class="modal-input-label">Oyun Kodu</label>
-    <input type="text" class="modal-input" id="oyunKoduInput" placeholder="Örn: Vq341El6">
+    <input type="text" class="modal-input" id="oyunKoduInput" placeholder="Kodu girin">
     <button class="modal-btn" onclick="oyunEkle()">Ekle</button>
     <div id="ekleHata" style="color:#ef4444; font-size:13px; margin-top:12px; text-align:center;"></div>
   </div>
@@ -454,72 +428,36 @@
     });
   }
 
-async function oyunEkle() {
-  const kod = document.getElementById('oyunKoduInput').value.trim();
-  const hata = document.getElementById('ekleHata');
+  async function oyunEkle() {
+    const kod = document.getElementById('oyunKoduInput').value.trim();
+    const hata = document.getElementById('ekleHata');
 
-  if (!kod) {
-    hata.innerText = '❌ Lütfen bir kod girin!';
-    return;
-  }
+    if (!kod) {
+      hata.innerText = '❌ Lütfen bir kod girin!';
+      return;
+    }
 
-  // Kodu veritabanında ara
-  const { data: kodData, error: kodHata } = await supabaseClient
-    .from('oyun_kodlar')
-    .select('*')
-    .eq('kod', kod)
-    .single();
+    const { data: kodData, error: kodHata } = await supabaseClient
+      .from('oyun_kodlar')
+      .select('*')
+      .eq('kod', kod)
+      .single();
 
-  if (kodHata || !kodData) {
-    hata.innerText = '❌ Geçersiz kod!';
-    return;
-  }
+    if (kodHata || !kodData) {
+      hata.innerText = '❌ Geçersiz kod!';
+      return;
+    }
 
-  if (kodData.kullanildi) {
-    hata.innerText = '⚠️ Bu kod daha önce kullanılmış!';
-    return;
-  }
-
-  // Zaten kütüphanede var mı
-  const { data: mevcut } = await supabaseClient
-    .from('kutuphane')
-    .select('id')
-    .eq('user_id', mevcutKullanici.id)
-    .eq('oyun_kod', kodData.oyun_kod)
-    .single();
-
-  if (mevcut) {
-    hata.innerText = '⚠️ Bu oyun zaten kütüphanenizde!';
-    return;
-  }
-
-  // Kodu kullanıldı olarak işaretle
-  await supabaseClient
-    .from('oyun_kodlar')
-    .update({ kullanildi: true, kullanan_user_id: mevcutKullanici.id, tarih: new Date().toISOString() })
-    .eq('kod', kod);
-
-  // Kütüphaneye ekle
-  const { error } = await supabaseClient
-    .from('kutuphane')
-    .insert({ user_id: mevcutKullanici.id, oyun_kod: kodData.oyun_kod });
-
-  if (error) {
-    hata.innerText = '❌ Hata: ' + error.message;
-    return;
-  }
-
-  document.getElementById('ekleModal').classList.remove('active');
-  document.getElementById('oyunKoduInput').value = '';
-  hata.innerText = '';
-  kutuphaneyiYukle();
-}
+    if (kodData.kullanildi) {
+      hata.innerText = '⚠️ Bu kod daha önce kullanılmış!';
+      return;
+    }
 
     const { data: mevcut } = await supabaseClient
       .from('kutuphane')
       .select('id')
       .eq('user_id', mevcutKullanici.id)
-      .eq('oyun_kod', kod)
+      .eq('oyun_kod', kodData.oyun_kod)
       .single();
 
     if (mevcut) {
@@ -527,9 +465,14 @@ async function oyunEkle() {
       return;
     }
 
+    await supabaseClient
+      .from('oyun_kodlar')
+      .update({ kullanildi: true, kullanan_user_id: mevcutKullanici.id, tarih: new Date().toISOString() })
+      .eq('kod', kod);
+
     const { error } = await supabaseClient
       .from('kutuphane')
-      .insert({ user_id: mevcutKullanici.id, oyun_kod: kod });
+      .insert({ user_id: mevcutKullanici.id, oyun_kod: kodData.oyun_kod });
 
     if (error) {
       hata.innerText = '❌ Hata: ' + error.message;
