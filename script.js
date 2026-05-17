@@ -2,7 +2,14 @@
 const { createClient } = supabase;
 const supabaseClient = createClient(
   'https://zetyyolrgoatlydijags.supabase.co',
-  'sb_publishable_s9AcIZ5j2HXXsO6H_6RPxg_cL37aJw7'
+  'sb_publishable_s9AcIZ5j2HXXsO6H_6RPxg_cL37aJw7',
+  {
+    auth: {
+      persistSession: true,
+      storageKey: 'shino-auth',
+      storage: window.localStorage
+    }
+  }
 );
 
 // Sayfa açılınca oturum kontrolü
