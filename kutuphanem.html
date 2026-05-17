@@ -384,44 +384,53 @@
     { kod: "6işİQ293", isim: "The Forest", resim: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242760/capsule_616x353.jpg?t=1699381053" }
   ];
 
-  // Kullanıcı adını al ve hoş geldin yaz
+  let mevcutKullanici = null;
+
   supabaseClient.auth.getSession().then(({ data: { session } }) => {
     if (!session) {
       window.location.href = 'index.html';
       return;
     }
-    const email = session.user.email;
-    const ad = email.includes('@') ? email.split('@')[0] : email;
+    mevcutKullanici = session.user;
+    const ad = session.user.email.split('@')[0];
     document.getElementById('hosgeldinBaslik').innerText = `Hoş geldin, ${ad}!`;
     kutuphaneyiYukle();
   });
 
-  function kutuphaneyiYukle() {
-    const kayitliStr = localStorage.getItem('kutuphane') || '[]';
-    const kayitli = JSON.parse(kayitliStr);
+  async function kutuphaneyiYukle() {
+    const { data, error } = await supabaseClient
+      .from('kutuphane')
+      .select('*')
+      .eq('user_id', mevcutKullanici.id)
+      .order('tarih', { ascending: false });
+
+    if (error) { console.error(error); return; }
+
     const grid = document.getElementById('kutupGrid');
     const bos = document.getElementById('bosDurum');
 
-    // İstatistikler
-    document.getElementById('statKod').innerText = kayitli.length;
-    document.getElementById('statToplam').innerText = kayitli.length;
-    if (kayitli.length > 0) {
-      const son = kayitli[kayitli.length - 1];
-      const tarih = new Date(son.tarih);
+    document.getElementById('statKod').innerText = data.length;
+    document.getElementById('statToplam').innerText = data.length;
+
+    if (data.length > 0) {
+      const tarih = new Date(data[0].tarih);
       document.getElementById('statTarih').innerText = tarih.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' });
     }
 
-    if (kayitli.length === 0) {
+    if (data.length === 0) {
       grid.innerHTML = '';
       bos.style.display = 'block';
       return;
     }
 
     bos.style.display = 'none';
-    grid.innerHTML = kayitli.map(k => {
-      const oyun = oyunDB.find(o => o.kod === k.kod);
+    grid.innerHTML = data.map(k => {
+      const oyun = oyunDB.find(o => o.kod === k.oyun_kod);
       if (!oyun) return '';
-      const tarih = new Date(k.tarih).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const tarih = new Date(k.tarih).toLocaleDateString('tr-TR', {
+        day: 'numeric', month: 'short', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
       return `
         <div class="kutuphane-kart" onclick="window.location.href='oyun.html?kod=${oyun.kod}'">
           <img src="${oyun.resim}" alt="${oyun.isim}">
@@ -436,7 +445,6 @@
       `;
     }).join('');
 
-    // Arama
     document.getElementById('kutupArama').addEventListener('input', function() {
       const aranan = this.value.toLowerCase();
       document.querySelectorAll('.kutuphane-kart').forEach(k => {
@@ -446,7 +454,7 @@
     });
   }
 
-  function oyunEkle() {
+  async function oyunEkle() {
     const kod = document.getElementById('oyunKoduInput').value.trim();
     const hata = document.getElementById('ekleHata');
     const oyun = oyunDB.find(o => o.kod === kod);
@@ -456,16 +464,26 @@
       return;
     }
 
-    const kayitliStr = localStorage.getItem('kutuphane') || '[]';
-    const kayitli = JSON.parse(kayitliStr);
+    const { data: mevcut } = await supabaseClient
+      .from('kutuphane')
+      .select('id')
+      .eq('user_id', mevcutKullanici.id)
+      .eq('oyun_kod', kod)
+      .single();
 
-    if (kayitli.find(k => k.kod === kod)) {
+    if (mevcut) {
       hata.innerText = '⚠️ Bu oyun zaten kütüphanenizde!';
       return;
     }
 
-    kayitli.push({ kod, tarih: new Date().toISOString() });
-    localStorage.setItem('kutuphane', JSON.stringify(kayitli));
+    const { error } = await supabaseClient
+      .from('kutuphane')
+      .insert({ user_id: mevcutKullanici.id, oyun_kod: kod });
+
+    if (error) {
+      hata.innerText = '❌ Hata: ' + error.message;
+      return;
+    }
 
     document.getElementById('ekleModal').classList.remove('active');
     document.getElementById('oyunKoduInput').value = '';
