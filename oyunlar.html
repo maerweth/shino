@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oyunlar - Shino</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .oyunlar-hero {
+      text-align: center;
+      padding: 60px 40px 40px;
+    }
+    .oyunlar-baslik {
+      font-size: 48px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00d4ff, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    .oyunlar-aciklama {
+      color: #7ab3cc;
+      font-size: 16px;
+    }
+    .oyunlar-arama {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      margin: 20px auto;
+      padding: 0 16px;
+      height: 52px;
+      max-width: 600px;
+    }
+    .oyunlar-arama input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 15px;
+      width: 100%;
+    }
+    .oyunlar-arama input::placeholder {
+      color: #7ab3cc;
+    }
+    .oyunlar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px 40px 60px;
+    }
+    .oyun-kart {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .oyun-kart img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .oyun-kart-isim {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      padding: 20px 12px 12px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .oyun-kart:hover {
+      border-color: #00d4ff;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo-alan">
+    <div class="logo-ikon">🎮</div>
+    <div>
+      <div class="logo-yazi">shino</div>
+      <div class="logo-alt">Güvenli Oyun Yönetimi</div>
+    </div>
+  </div>
+  <div class="nav-linkler">
+    <a href="index.html" class="nav-link">🏠 Ana Sayfa</a>
+    <a href="oyunlar.html" class="nav-link aktif">🎮 Oyunlar</a>
+    <a href="nasil-calisir.html" class="nav-link">❓ Nasıl Çalışır?</a>
+  </div>
+  <div class="nav-buttons" id="navButtons">
+    <button class="btn-login" onclick="window.location.href='index.html'">Giriş Yap</button>
+    <button class="btn-register" onclick="window.location.href='index.html'">Kayıt Ol</button>
+  </div>
+</nav>
+
+<div class="oyunlar-hero">
+  <h1 class="oyunlar-baslik">Oyunlar</h1>
+  <p class="oyunlar-aciklama">Tüm oyunları keşfedin ve kütüphanenize ekleyin</p>
+</div>
+
+<div style="padding: 0 40px;">
+  <div class="oyunlar-arama">
+    <span style="font-size:18px; margin-right:10px;">🔍</span>
+    <input type="text" placeholder="Oyun ara..." id="oyunArama">
+  </div>
+</div>
+
+<div class="oyunlar-grid" id="oyunlarGrid">
+
+  <div class="oyun-kart">
+    <img src="https://cdn.itemsatis.com/uploads/post_images/subnautica-2-6080593.png" alt="Subnautica 2">
+    <div class="oyun-kart-isim">Subnautica 2</div>
+  </div>
+
+  <div class="oyun-kart">
+    <img src="https://images.hepsiburada.net/description-assets/description-prod-30/4452b4c6-6ddd-4fd5-a111-750de34d7a4c.jpg" alt="GTA V">
+    <div class="oyun-kart-isim">GTA V</div>
+  </div>
+
+  <div class="oyun-kart">
+    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242760/capsule_616x353.jpg?t=1699381053" alt="The Forest">
+    <div class="oyun-kart-isim">The Forest</div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById("oyunArama").addEventListener("input", function() {
+  const aranan = this.value.toLowerCase();
+  const kartlar = document.querySelectorAll(".oyun-kart");
+  kartlar.forEach(kart => {
+    const isim = kart.querySelector(".oyun-kart-isim").innerText.toLowerCase();
+    kart.style.display = isim.includes(aranan) ? "block" : "none";
+  });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
