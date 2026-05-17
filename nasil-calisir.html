@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasıl Çalışır? - Shino</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nasil-hero {
+      text-align: center;
+      padding: 80px 40px 40px;
+    }
+    .nasil-baslik {
+      font-size: 48px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00d4ff, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    .nasil-aciklama {
+      color: #7ab3cc;
+      font-size: 16px;
+    }
+    .adimlar-baslik {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+      margin: 40px 0 32px;
+    }
+    .adimlar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 0 40px 60px;
+    }
+    .adim-kart {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .adim-ikon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+    .adim-baslik {
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 12px;
+    }
+    .adim-aciklama {
+      font-size: 13px;
+      color: #7ab3cc;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .adim-madde {
+      text-align: left;
+      font-size: 13px;
+      color: #7ab3cc;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .adim-madde::before {
+      content: "✅";
+      font-size: 12px;
+    }
+    .adim-no-btn {
+      margin-top: 20px;
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: none;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .adim-no-btn.mavi { background: #00d4ff; color: #0a0f1e; }
+    .adim-no-btn.mor { background: #8b5cf6; color: white; }
+    .adim-no-btn.yesil { background: #10b981; color: white; }
+    .adim-no-btn.turuncu { background: #f59e0b; color: white; }
+    hr.adim-cizgi {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo-alan">
+    <div class="logo-ikon">🎮</div>
+    <div>
+      <div class="logo-yazi">shino</div>
+      <div class="logo-alt">Güvenli Oyun Yönetimi</div>
+    </div>
+  </div>
+  <div class="nav-linkler">
+    <a href="index.html" class="nav-link">🏠 Ana Sayfa</a>
+    <a href="oyunlar.html" class="nav-link">🎮 Oyunlar</a>
+    <a href="nasil-calisir.html" class="nav-link aktif">❓ Nasıl Çalışır?</a>
+  </div>
+  <div class="nav-buttons" id="navButtons">
+    <button class="btn-login" onclick="window.location.href='index.html'">Giriş Yap</button>
+    <button class="btn-register" onclick="window.location.href='index.html'">Kayıt Ol</button>
+  </div>
+</nav>
+
+<div class="nasil-hero">
+  <h1 class="nasil-baslik">Nasıl Kullanılır?</h1>
+  <p class="nasil-aciklama">shino'yu kullanarak oyun hesaplarınızı güvenle yönetin</p>
+</div>
+
+<h2 class="adimlar-baslik">Adım Adım Kullanım</h2>
+
+<div class="adimlar-grid">
+
+  <div class="adim-kart">
+    <div class="adim-ikon">👤</div>
+    <div class="adim-baslik">Hesap Oluştur</div>
+    <p class="adim-aciklama">Ücretsiz hesap oluşturup sisteme giriş yapın</p>
+    <hr class="adim-cizgi">
+    <div class="adim-madde">E-posta adresinizle kayıt olun</div>
+    <div class="adim-madde">Güvenli şifre belirleyin</div>
+    <button class="adim-no-btn mavi">Adım 1</button>
+  </div>
+
+  <div class="adim-kart">
+    <div class="adim-ikon">🎮</div>
+    <div class="adim-baslik">Oyun Ekle</div>
+    <p class="adim-aciklama">Kütüphanenize satın aldığınız oyun kodu ile oyun ekleyin</p>
+    <hr class="adim-cizgi">
+    <div class="adim-madde">Satın aldığınız oyun kodunu girin</div>
+    <div class="adim-madde">Oyunu kütüphanenize ekleyin</div>
+    <button class="adim-no-btn mor">Adım 2</button>
+  </div>
+
+  <div class="adim-kart">
+    <div class="adim-ikon">🛡️</div>
+    <div class="adim-baslik">Güvenli Saklama</div>
+    <p class="adim-aciklama">Hesap bilgileriniz şifrelenerek güvenle saklanır</p>
+    <hr class="adim-cizgi">
+    <div class="adim-madde">Şifreler güvenli şekilde şifrelenir</div>
+    <div class="adim-madde">Güvenli sunucu altyapısı</div>
+    <button class="adim-no-btn yesil">Adım 3</button>
+  </div>
+
+  <div class="adim-kart">
+    <div class="adim-ikon">🔑</div>
+    <div class="adim-baslik">Guard Kodu Al</div>
+    <p class="adim-aciklama">İhtiyacınız olduğunda guard kodlarınızı alın</p>
+    <hr class="adim-cizgi">
+    <div class="adim-madde">Tek tıkla guard kodu alma</div>
+    <div class="adim-madde">Kopyalama ve paylaşım kolaylığı</div>
+    <button class="adim-no-btn turuncu">Adım 4</button>
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
