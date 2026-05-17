@@ -221,12 +221,13 @@ body {
 .guard-kod-alani {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 12px 14px;
   background: #071825;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 4px;
+  color: white;
 }
 
 .guard-kod-alani button {
@@ -237,6 +238,7 @@ body {
   padding: 5px 8px;
   border-radius: 6px;
   color: white;
+  margin-left: 12px;
 }
 
 .kullanim-baslik {
@@ -321,6 +323,7 @@ body {
   color: #7ab3cc;
   line-height: 1.5;
 }
+
 .guard-talep {
   display: flex;
   align-items: center;
