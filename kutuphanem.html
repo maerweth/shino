@@ -454,15 +454,66 @@
     });
   }
 
-  async function oyunEkle() {
-    const kod = document.getElementById('oyunKoduInput').value.trim();
-    const hata = document.getElementById('ekleHata');
-    const oyun = oyunDB.find(o => o.kod === kod);
+async function oyunEkle() {
+  const kod = document.getElementById('oyunKoduInput').value.trim();
+  const hata = document.getElementById('ekleHata');
 
-    if (!oyun) {
-      hata.innerText = '❌ Geçersiz oyun kodu!';
-      return;
-    }
+  if (!kod) {
+    hata.innerText = '❌ Lütfen bir kod girin!';
+    return;
+  }
+
+  // Kodu veritabanında ara
+  const { data: kodData, error: kodHata } = await supabaseClient
+    .from('oyun_kodlar')
+    .select('*')
+    .eq('kod', kod)
+    .single();
+
+  if (kodHata || !kodData) {
+    hata.innerText = '❌ Geçersiz kod!';
+    return;
+  }
+
+  if (kodData.kullanildi) {
+    hata.innerText = '⚠️ Bu kod daha önce kullanılmış!';
+    return;
+  }
+
+  // Zaten kütüphanede var mı
+  const { data: mevcut } = await supabaseClient
+    .from('kutuphane')
+    .select('id')
+    .eq('user_id', mevcutKullanici.id)
+    .eq('oyun_kod', kodData.oyun_kod)
+    .single();
+
+  if (mevcut) {
+    hata.innerText = '⚠️ Bu oyun zaten kütüphanenizde!';
+    return;
+  }
+
+  // Kodu kullanıldı olarak işaretle
+  await supabaseClient
+    .from('oyun_kodlar')
+    .update({ kullanildi: true, kullanan_user_id: mevcutKullanici.id, tarih: new Date().toISOString() })
+    .eq('kod', kod);
+
+  // Kütüphaneye ekle
+  const { error } = await supabaseClient
+    .from('kutuphane')
+    .insert({ user_id: mevcutKullanici.id, oyun_kod: kodData.oyun_kod });
+
+  if (error) {
+    hata.innerText = '❌ Hata: ' + error.message;
+    return;
+  }
+
+  document.getElementById('ekleModal').classList.remove('active');
+  document.getElementById('oyunKoduInput').value = '';
+  hata.innerText = '';
+  kutuphaneyiYukle();
+}
 
     const { data: mevcut } = await supabaseClient
       .from('kutuphane')
