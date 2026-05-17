@@ -184,3 +184,10 @@ if (searchInput) {
     }
   });
 }
+function kutupHaneGit() {
+  supabaseClient.auth.getSession().then(({ data: { session } }) => {
+    if (session) {
+      window.location.href = 'kutuphanem.html';
+    }
+  });
+}
