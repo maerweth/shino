@@ -5,27 +5,68 @@
 }
 
 body {
-  background-color: #000000;
-  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0a0f1e 0%, #0d1a35 50%, #0a0f1e 100%);
+  font-family: 'Exo 2', Arial, sans-serif;
   color: white;
+  min-height: 100vh;
 }
 
 /* NAVBAR */
 .navbar {
-  background-color: #ffffff;
-  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
-  border-bottom: 1px solid #222;
+  padding: 16px 40px;
+  background: rgba(10, 15, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.logo {
-  color: #ff8c00;
-  font-size: 22px;
+.logo-alan {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-ikon {
+  font-size: 24px;
+  color: #00d4ff;
+}
+
+.logo-yazi {
+  font-size: 20px;
   font-weight: bold;
-  letter-spacing: 2px;
+  color: white;
+}
+
+.logo-alt {
+  font-size: 11px;
+  color: #7ab3cc;
+}
+
+.nav-linkler {
+  display: flex;
+  gap: 32px;
+  margin-left: 80px;
+}
+
+.nav-link {
+  color: #7ab3cc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-link.aktif {
+  color: white;
+  border-bottom: 2px solid #00d4ff;
+  padding-bottom: 2px;
+}
+
+.nav-link:hover {
+  color: white;
 }
 
 .nav-buttons {
@@ -44,7 +85,7 @@ body {
 }
 
 .btn-login:hover {
-  background: #1a1a1a;
+  background: rgba(139, 92, 246, 0.1);
 }
 
 .btn-register {
@@ -58,33 +99,170 @@ body {
 }
 
 .btn-register:hover {
-  background: #1a1a1a;
+  background: #7c3aed;
 }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 60px 32px 32px;
+  padding: 80px 32px 60px;
 }
 
-.hero h1 {
-  font-size: 32px;
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: #00d4ff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.hero-baslik {
+  font-size: 52px;
+  font-weight: 800;
   color: white;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
 }
 
-.hero p {
+.hero-renkli {
+  background: linear-gradient(90deg, #00d4ff, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-aciklama {
   font-size: 16px;
-  color: #888;
+  color: #7ab3cc;
+  max-width: 600px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+
+.hero-butonlar {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.btn-kutup {
+  background: #00d4ff;
+  color: #0a0f1e;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-kutup:hover {
+  background: #00b8d9;
+}
+
+.btn-nasil {
+  background: transparent;
+  color: white;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-nasil:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.platform-ikonlar {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 32px;
+  align-items: center;
+}
+
+.platform-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.platform-icon:hover {
+  transform: scale(1.1);
+}
+
+.platform-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+}
+
+.platform-icon.steam {
+  background: #1b9eb3;
+  box-shadow: 0 0 16px rgba(27, 158, 179, 0.4);
+}
+
+.platform-icon.playstation {
+  background: #6b3fa0;
+  box-shadow: 0 0 16px rgba(107, 63, 160, 0.4);
+}
+
+.platform-icon.epic {
+  background: #2a7a6e;
+  box-shadow: 0 0 16px rgba(42, 122, 110, 0.4);
+}
+
+/* ARAMA */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  margin: 0 40px 20px;
+  padding: 0 16px;
+  height: 52px;
+}
+
+.search-icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 15px;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: #7ab3cc;
+}
+
+#arama-sonuc {
+  margin: 0 40px;
 }
 
 /* OYUN KARTLARI */
 .games-section {
-  padding: 20px 32px 60px;
+  padding: 20px 40px 60px;
 }
 
 .section-title {
-  color: #ff8c00;
+  color: #00d4ff;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -98,15 +276,16 @@ body {
 }
 
 .game-card {
-  background: #1a1a1a;
-  border-radius: 10px;
-  border: 1px solid #2a2a2a;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
   overflow: hidden;
   cursor: pointer;
+  transition: border-color 0.2s;
 }
 
 .game-card:hover {
-  border-color: #1a1a1a;
+  border-color: #00d4ff;
 }
 
 .game-img {
@@ -134,7 +313,7 @@ body {
 }
 
 .game-tag {
-  color: #888;
+  color: #7ab3cc;
   font-size: 12px;
 }
 
@@ -142,7 +321,7 @@ body {
   display: block;
   width: calc(100% - 32px);
   margin: 8px 16px 16px;
-  background: #1a1a1a;
+  background: #ff8c00;
   color: white;
   border: none;
   border-radius: 8px;
@@ -152,8 +331,9 @@ body {
 }
 
 .game-btn:hover {
-  background: #1a1a1a;
+  background: #e07b00;
 }
+
 /* GİRİŞ EKRANI */
 .modal-overlay {
   display: none;
@@ -173,7 +353,7 @@ body {
 }
 
 .modal {
-  background: #1a1a1a;
+  background: #1a1a2e;
   border: 1px solid #333;
   border-radius: 12px;
   padding: 40px;
@@ -223,7 +403,7 @@ body {
 }
 
 .input-box:focus {
-  border-color: #ff00dd;
+  border-color: #8b5cf6;
 }
 
 .modal-btn {
@@ -239,8 +419,9 @@ body {
 }
 
 .modal-btn:hover {
-  background: #ff00bf;
+  background: #7c3aed;
 }
+
 .forgot-password {
   color: #4a90e2;
   font-size: 13px;
@@ -251,34 +432,4 @@ body {
 
 .forgot-password:hover {
   color: #6aaeff;
-}
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: #0d3349;
-  border-radius: 8px;
-  margin: 20px 32px 0;
-  padding: 0 16px;
-  height: 48px;
-}
-
-.search-icon {
-  font-size: 18px;
-  margin-right: 10px;
-}
-
-.search-input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: white;
-  font-size: 15px;
-  width: 100%;
-}
-
-.search-input::placeholder {
-  color: #7ab3cc;
-}
-#arama-sonuc {
-  margin: 0 32px;
 }
